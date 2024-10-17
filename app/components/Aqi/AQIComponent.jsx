@@ -2,29 +2,34 @@ import { getAqiData } from "@/app/lib/Weather-info";
 import Card from "../Card";
 import Image from "next/image";
 
-const AQIComponent = async (lat, lon) => {
+const AQIComponent = async ({ lat, lon }) => {
   const data = await getAqiData(lat, lon); // Await the async function to get resolved data
+  if (!data) {
+    return (
+      <Card>
+        <h6 className="feature-name">Air Pollution & Quality</h6>
+        <div className="text-white text-center">
+          Failed to fetch air quality data
+        </div>
+      </Card>
+    );
+  }
+
   const { main, components } = data || {};
 
-  console.log({ main }, { components });
+  // Utility function to get the AQI rating based on the AQI value
   const getAQIRating = (aqi) => {
     switch (aqi) {
-      case 1: {
-        return "GOOd";
-      }
-      case 2: {
+      case 1:
+        return "Good";
+      case 2:
         return "Fair";
-      }
-      case 3: {
+      case 3:
         return "Moderate";
-      }
-      case 4: {
+      case 4:
         return "Poor";
-      }
-      case 5: {
+      case 5:
         return "Very Poor";
-      }
-
       default:
         return "Unknown";
     }
@@ -51,101 +56,113 @@ const AQIComponent = async (lat, lon) => {
           </span>
         </div>
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            Carbon Monoxide
+        {components?.co && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              Carbon Monoxide
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.co} µg/m³
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.co} µg/m³
-          </span>
-        </div>
+        )}
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            Nitric Oxide
+        {components?.no && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              Nitric Oxide
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.no} ppm
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.no} ppm
-          </span>
-        </div>
+        )}
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            Nitrogen Dioxide
+        {components?.no2 && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              Nitrogen Dioxide
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.no2} ppm
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.no2} ppm
-          </span>
-        </div>
+        )}
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            Ozone
+        {components?.o3 && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              Ozone
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.o3} µg/m³
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.o3} µg/m³
-          </span>
-        </div>
+        )}
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            Sulfur Dioxide
+        {components?.so2 && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              Sulfur Dioxide
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.so2} ppm
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.so2} ppm
-          </span>
-        </div>
+        )}
 
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
-            <Image
-              className="max-w-[18px]"
-              src="/icons/icon_air_element.png"
-              alt="icon"
-              width={18}
-              height={18}
-            />
-            PM2.5
+        {components?.pm2_5 && (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-[#CADEE8] lg:text-base">
+              <Image
+                className="max-w-[18px]"
+                src="/icons/icon_air_element.png"
+                alt="icon"
+                width={18}
+                height={18}
+              />
+              PM2.5
+            </div>
+            <span className="text-right text-sm text-white lg:text-base">
+              {components.pm2_5} µg/m³
+            </span>
           </div>
-          <span className="text-right text-sm text-white lg:text-base">
-            {components?.pm2_5} µg/m³
-          </span>
-        </div>
+        )}
       </div>
     </Card>
   );

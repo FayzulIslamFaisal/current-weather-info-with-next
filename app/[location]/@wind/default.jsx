@@ -1,6 +1,5 @@
-
 const DefaultPage = () => {
-  return <div>DefaultPage</div>;
+  return <div className="text-white">Default Wind Page</div>;
 };
 
 export default DefaultPage;

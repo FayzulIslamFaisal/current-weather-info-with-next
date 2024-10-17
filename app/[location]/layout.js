@@ -28,12 +28,6 @@ export default function RootLayout({
   return (
     <>
       <div className="wrapper">
-        {/* <Image
-          src="/images/background.png"
-          width={700}
-          height={1200}
-          alt="Background Image"
-        /> */}
         <Image
           src="/images/background.png"
           className="bg-img"
@@ -42,14 +36,14 @@ export default function RootLayout({
           alt="background"
         />
         <div className="overlay"></div>
-        <main className="!z-50 w-full">
+        <main className="!z-50 h-screen">
           <div className="container">
-            <div className="grid grid-cols-12 gap-y-8 py-16 lg:gap-8 2xl:gap-20 2xl:py-20">
-              {children}
+            <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5 py-16 lg:gap-6 2xl:gap-10 2xl:py-20">
               {aqi}
               {weather}
-              {wind}
               {temperature}
+              {wind}
+              {children}
             </div>
           </div>
         </main>

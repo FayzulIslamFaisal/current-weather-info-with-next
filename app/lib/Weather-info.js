@@ -28,9 +28,10 @@ export const getWindData = async (lat, lon) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.CURRENT_WEATHER_WITH_NEXT_API}&units=metric`
     );
     const data = await response.json();
-    return data?.wind;
+    return data?.wind || {}; // Default to an empty object to avoid destructuring issues
   } catch (error) {
-    console.error(error.message);
+    console.error("Error fetching wind data:", error.message);
+    return null; // Return null on error
   }
 };
 
@@ -40,7 +41,6 @@ export const getAqiData = async (lat, lon) => {
       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.CURRENT_WEATHER_WITH_NEXT_API}`
     );
     const data = await response.json();
-    console.log(data);
     return data?.list[0];
   } catch (error) {
     console.error(error.message);

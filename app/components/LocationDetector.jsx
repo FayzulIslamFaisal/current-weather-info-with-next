@@ -12,21 +12,26 @@ const LocationDetector = () => {
 
   useEffect(() => {
     setLoading(true);
-    const params = new URLSearchParams(searchParams);
+    const newParams = new URLSearchParams(searchParams.toString());
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        params.set("latitude", position.coords.latitude);
-        params.set("longitude", position.coords.longitude);
+        newParams.set("latitude", position.coords.latitude);
+        newParams.set("longitude", position.coords.longitude);
         setLoading(false);
-        router.push(`/current?${params.toString()}`);
+        router.push(`/current?${newParams.toString()}`);
       });
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, router]);
   return (
     <div className=" text-white flex flex-col items-center justify-center bg-slate-700 h-full">
       {loading && (
         <>
-          <Image src={`/images/network.gif`} width={600} height={600} />
+          <Image
+            src={`/images/network.gif`}
+            width={600}
+            height={600}
+            alt="hello"
+          />
           <h1>Detecting Location....</h1>
         </>
       )}

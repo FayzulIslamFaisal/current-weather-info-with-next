@@ -13,8 +13,8 @@ const WeatherComponent = async ({ lat, lon }) => {
             className="max-w-20"
             src="/icons/icon_rain.png"
             alt="rain icon"
-            width={20}
-            height={20}
+            width={80}
+            height={80}
           />
           <h3 className="feature-title">{main}</h3>
           <span className="feature-name">{description}</span>
