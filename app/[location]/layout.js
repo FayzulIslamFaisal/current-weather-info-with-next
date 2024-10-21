@@ -38,7 +38,7 @@ export default function RootLayout({
         <div className="overlay"></div>
         <main className="!z-50 h-screen">
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5 py-16 lg:gap-6 2xl:gap-10 2xl:py-20">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 py-16 lg:gap-6 2xl:gap-10 2xl:py-20">
               {children}
               {aqi}
               {weather}

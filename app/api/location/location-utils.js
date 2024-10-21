@@ -1,5 +1,29 @@
 const data = [
   {
+    location: "Dhaka",
+    longitude: "90.412518",
+    latitude: "23.810331",
+    country: "Bangladesh",
+  },
+  {
+    location: "Kolkata",
+    longitude: "88.3639",
+    latitude: "22.5726",
+    country: "India",
+  },
+  {
+    location: "Rome",
+    longitude: "12.496366",
+    latitude: "41.902782",
+    country: "Italy",
+  },
+  {
+    location: "Martina Franca",
+    longitude: "17.334850",
+    latitude: "40.705900",
+    country: "Italy",
+  },
+  {
     location: "Soho",
     longitude: "-0.133869",
     latitude: "51.513596",
@@ -377,12 +401,7 @@ const data = [
     latitude: "52.5200",
     country: "Germany",
   },
-  {
-    location: "Kolkata",
-    longitude: "88.3639",
-    latitude: "22.5726",
-    country: "India",
-  },
+
   {
     location: "Rome",
     longitude: "12.4964",

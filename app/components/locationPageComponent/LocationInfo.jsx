@@ -4,7 +4,7 @@ import LocationSwitcher from "./LocationSwitcher";
 
 const LocationInfo = async ({ lat, lon }) => {
   const LocationInfo = await getLocationData(lat, lon);
-  console.log({ LocationInfo });
+  console.log("-----LocationInfo---", LocationInfo);
   return (
     <div>
       <div className="col-span-12 flex flex-col justify-end lg:col-span-8 2xl:col-span-9">

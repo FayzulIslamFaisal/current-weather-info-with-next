@@ -6,7 +6,7 @@ export const getLocationData = async (lat, lon) => {
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}`
     );
     const data = await response.json();
-    return data?.weather[0];
+    return data;
   } catch (error) {
     console.error(error.message);
   }
@@ -31,5 +31,20 @@ export const getLocationLatLong = async (locationName) => {
     return data;
   } catch (error) {
     console.error(error.message);
+  }
+};
+
+export const getResolvedLatLon = async (location, lat, lon) => {
+  console.log(location, lat, lon);
+  if ((lat, lon)) {
+    return { lat, lon };
+  }
+
+  const locationLatLong = await getLocationLatLong(location);
+  console.log(locationLatLong);
+  if (locationLatLong.latitude && locationLatLong.longitude) {
+    const lat = locationLatLong.latitude;
+    const lon = locationLatLong.longitude;
+    return { lat, lon };
   }
 };
